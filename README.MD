@@ -1,0 +1,1 @@
+[![](img/capa.png)](https://beatriz-ls.github.io/forecast_venda_veiculos/#/title-slide)
