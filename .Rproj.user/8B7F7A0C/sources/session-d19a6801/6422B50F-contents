@@ -1,0 +1,266 @@
+/*-- scss:defaults --*/
+
+// Import fonts
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Nunito:wght@300;800&family=Roboto+Mono:wght@300;400&family=Sanchez&display=swap');
+
+// fonts
+$font-family-sans-serif: 'Nunito', sans-serif;
+$font-family-serif: 'Sanchez', serif;
+$font-family-monospace: 'Roboto Mono', monospace;
+
+// nova paleta de cores
+$salmon: #E68B67;
+$cream: #FAF5E0;
+$teal: #087167;
+$blue: #86C7D6;
+
+// scss variables
+$body-bg: $cream;
+$link-color: $salmon;
+$code-color: $salmon;
+$code-bg: $cream;
+$code-block-font-size: 0.8em;
+$code-block-bg: $cream;
+$presentation-font-size-root: 25px;
+
+/*-- scss:rules --*/
+
+body {
+  line-height: 2em;
+}
+
+// bold styling
+strong, b {
+  font-weight: 900;
+}
+
+// table header font size
+th {
+  font-size: 30px;
+}
+
+// table text font size
+td {
+  font-size: 20px;
+}
+
+// horizontal line
+hr {
+  border: 4px solid $blue;
+  border-radius: 5px;
+  margin-bottom: 30px;
+}
+
+// alternative horizontal line colors
+.hr-salmon {
+  border: 0;
+  height: 4px;
+  background-color: $salmon;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.hr-blue {
+  border: 4px solid $blue;
+}
+
+// custom slide title
+.custom-title {
+  font-family: $font-family-serif;
+  color: $cream;
+  font-size: 2.7em;
+  left: 20px;
+}
+
+// cover slide subtitles
+.custom-subtitle {
+  font-family: $font-family-sans-serif;
+  color: $cream;
+  font-size: 2.2em;
+  left: 20px;
+}
+
+.custom-subtitle2 {
+  font-family: $font-family-sans-serif;
+  color: $teal;
+  font-size: 1.4em;
+  left: 20px;
+}
+
+.custom-subtitle3 {
+  font-family: $font-family-sans-serif;
+  color: $cream;
+  font-size: 1.1em;
+  left: 20px;
+}
+
+// cover slide footer text
+.title-footer {
+  text-align: center !important;
+  color: $cream;
+  font-size: 0.8em !important;
+}
+
+// slide titles
+.slide-title-xl,
+.slide-title,
+.slide-title2,
+.slide-title3 {
+  font-family: $font-family-serif;
+  color: $blue;
+  font-weight: 700;
+}
+
+.slide-title-xl { font-size: 3em; }
+.slide-title     { font-size: 2em; }
+.slide-title2    { font-size: 1.7em; }
+.slide-title3    { font-size: 1.5em; }
+
+.large-fa-icon {
+  font-size: 2.5em;
+}
+
+// slide quote 
+
+.fullscreen-colored {
+  background-color: $teal !important;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  
+  /* Centralização absoluta */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.fullscreen-colored h1, 
+.fullscreen-colored h2, 
+.fullscreen-colored h3,
+.fullscreen-colored p {
+  margin: 0;
+  font-size: 2.5em;
+  color: $salmon;
+}
+
+
+// body text sizes
+.body-text-xl {
+  font-family: $font-family-sans-serif;
+  font-size: 2em;
+}
+
+.body-text-l {
+  font-size: 1.5em;
+  line-height: 1.9em;
+  margin-bottom: 1em;
+}
+
+.body-text-m {
+  font-size: 1.0em;
+  line-height: 1.3em;
+  margin-bottom: 1em;
+}
+
+.body-text-s {
+  font-size: 20px;
+  line-height: 0.5em;
+}
+
+.body-text-xs {
+  font-size: 0.5em;
+  line-height: 1.8em;
+}
+
+// font helpers
+.sanchez-font {
+  font-family: $font-family-serif;
+}
+
+// text color helpers
+.cream-text {
+  color: $cream;
+}
+
+.blue-text {
+  color: $blue;
+}
+
+.salmon-text {
+  color: $salmon;
+}
+
+.teal-text {
+  color: $teal;
+}
+
+.bg-highlight {
+  background-color: rgba(230, 139, 103, 0.2); // salmon com transparência
+  padding: 5px 8px;
+  border-radius: 25px;
+}
+
+.blue-underline {
+  text-decoration: underline $blue;
+  text-underline-offset: 10px;
+  text-decoration-thickness: 4px;
+}
+
+.callout-important {
+  background-color: $cream;
+  border-left: 5px solid $salmon;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+// text alignment
+.center-text {
+  text-align: center;
+}
+
+.right-align-text {
+  text-align: right;
+}
+
+.left-align-text {
+  text-align: left;
+}
+
+// vertical alignment
+.vertical-center {
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.page-center {
+  line-height: 700px;
+  text-align: center;
+}
+
+// spacing helpers
+.topbr {
+  display: block;
+  margin-top: 1em;
+}
+
+.bottombr {
+  display: block;
+  margin-bottom: 1em;
+}
+
+.br-smaller {
+  line-height: 6px;
+}
+
+// tab font size
+.panel-tabset {
+  font-size: 25px;
+}

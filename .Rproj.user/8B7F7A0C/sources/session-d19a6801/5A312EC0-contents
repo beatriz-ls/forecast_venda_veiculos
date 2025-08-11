@@ -1,0 +1,36 @@
+---
+format:
+  revealjs:
+    slide-number: true
+    show-slide-number: print
+    theme: "bea_slide_theme.scss"
+    menu:
+      side: right
+      width: wide
+---
+
+##  {#title-slide data-menu-title="Title Slide" background="#087167"}
+
+[Modelagem e Previsão de Vendas de Carros]{.custom-title}
+
+[*Uma aplicação de redes neurais*]{.custom-subtitle}
+
+<hr style="border: 1px solid #d2e3f3;">
+
+::: columns
+::: {.column width="50%"}
+[Beatriz Lima Silveira]{.custom-subtitle3}<br>
+[ESley Caminhas Ferreira]{.custom-subtitle3}<br>
+[Mario Prado]{.custom-subtitle3}<br>
+:::
+
+::: {.column width="50%"}
+[Universidade Federal do Espírito Santo]{.custom-subtitle3}<br>
+:::
+:::
+
+<br>
+
+::: title-footer
+Slides disponíveis em [GitHub](https://github.com/beatriz-ls/causality_introduction)
+:::
