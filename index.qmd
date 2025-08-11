@@ -21,7 +21,7 @@ format:
 ::: {.column width="50%"}
 [Beatriz Lima Silveira]{.custom-subtitle3}<br>
 [Esley Caminhas Ferreira]{.custom-subtitle3}<br>
-[Mario Prado]{.custom-subtitle3}<br>
+[Mário Prado Celestino Júnior]{.custom-subtitle3}<br>
 :::
 
 ::: {.column width="50%"}
@@ -34,3 +34,18 @@ format:
 ::: title-footer
 Slides disponíveis em [GitHub](https://github.com/beatriz-ls/causality_introduction)
 :::
+
+
+------------------------------------------------------------------------
+
+{{< include sections/0_topicos.qmd >}}
+
+------------------------------------------------------------------------
+
+{{< include sections/1_introducao.qmd >}}
+
+------------------------------------------------------------------------
+
+{{< include sections/2_preprocessamento.qmd >}}
+
+------------------------------------------------------------------------

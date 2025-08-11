@@ -1,0 +1,26 @@
+---
+format: 
+  revealjs:
+    slide-number: true
+    code-link: true
+    highlight-style: a11y
+    chalkboard: true
+    # self-contained: true
+    # scrollable: true
+    theme: "bea_slide_theme.scss"
+---
+
+##  {#topicos data-menu-title="Tópicos"}
+
+[Tópicos]{.slide-title}
+
+<hr>
+
+::: body-text-m
+-   Introdução
+-   Pré processamento dos dados
+-   Analise descritiva dos dados
+-   Metodologia
+-   Resultados
+-   Conclusões
+:::

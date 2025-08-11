@@ -1,0 +1,28 @@
+---
+format: 
+  revealjs:
+    slide-number: true
+    code-link: true
+    highlight-style: a11y
+    chalkboard: true
+    # self-contained: true
+    # scrollable: true
+    theme: "bea_slide_theme.scss"
+---
+
+##  {#introducao data-menu-title="Introdução"}
+
+[Introdução]{.slide-title}
+
+<hr>
+
+- **Objetivo:** Previsão de vendas de veículos no Brasil utilizando técnicas de redes neurais aplicadas a séries temporais.
+
+- **Fonte dos dados**: [portal de dados abertos do Governo Federal](https://dados.gov.br/dados/conjuntos-dados/7384-vendas-de-veiculos-pelas-concessionarias-automoveis) - Vendas de veículos pelas concessionárias
+
+- **Frequência:** mensal.
+
+- **Variável de interesse**: número de automóveis vendidos pelas concessionárias.
+
+
+
