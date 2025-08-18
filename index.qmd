@@ -2,11 +2,18 @@
 format:
   revealjs:
     slide-number: true
+    code-fold: false
     show-slide-number: print
     theme: "bea_slide_theme.scss"
     menu:
       side: right
       width: wide
+engine: jupyter
+jupyter: python3
+execute:
+  echo: false      # padrão do deck (depois ligamos só onde queremos)
+  warning: false
+  message: false
 ---
 
 ##  {#title-slide data-menu-title="Title Slide" background="#087167"}

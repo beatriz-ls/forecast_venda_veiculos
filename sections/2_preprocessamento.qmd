@@ -1,16 +1,5 @@
----
-format: 
-  revealjs:
-    slide-number: true
-    code-link: true
-    highlight-style: a11y
-    chalkboard: true
-    # self-contained: true
-    # scrollable: true
-    theme: "bea_slide_theme.scss"
----
 
-##  {#preprocessamento data-menu-title="Pré Procesamento dos dados"}
+##  {#preprocessamento data-menu-title="Pré Processamento dos dados"}
 
 [Pré Processamento dos dados]{.slide-title}
 
@@ -18,7 +7,12 @@ format:
 
 <hr>
 
-```{python libs, include = FALSE}
+```{python}
+#| label: libs
+#| echo: true
+#| output: false
+#| warning: false
+#| message: false
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -31,5 +25,254 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dense, Dropout
 from tensorflow.keras.callbacks import EarlyStopping
 from tensorflow.keras.optimizers import Adam
+```
+
+
+##  {#preprocessamento data-menu-title="Pré Processamento dos dados"}
+
+[Pré Processamento dos dados]{.slide-title}
+
+[Tratamento dos dados]{.custom-subtitle2}
+
+<hr>
+
+```{python}
+#| label: import_data
+#| echo: true
+#| output: true
+#| warning: false
+#| message: false
+
+df = pd.read_excel("Venda Veiculos.xlsx")
+df['Data'] = pd.to_datetime(df['Data'])
+df = df.sort_values('Data')
+df = df.set_index('Data')
+
+# Visualização
+df.head()
+```
+
+
+##  {#preprocessamento data-menu-title="Pré Processamento dos dados"}
+
+[Pré Processamento dos dados]{.slide-title}
+
+[Tratamento dos dados]{.custom-subtitle2}
+
+<hr>
+
+```{python}
+#| label: descritivas_dados
+#| echo: true
+#| output: true
+#| warning: false
+#| message: false
+df.isna().sum()
+# Período da série
+print(df.index.min(), df.index.max())
+# Frequência das datas
+print(df.index.to_series().diff().value_counts())
+```
+
+##  {#preprocessamento data-menu-title="Pré Processamento dos dados"}
+
+[Pré Processamento dos dados]{.slide-title}
+
+[Tratamento dos dados]{.custom-subtitle2}
+
+<hr>
+
+```{python}
+#| label: serie
+#| echo: true
+#| output: true
+#| warning: false
+#| message: false
+
+plt.figure(figsize=(12, 6))
+plt.plot(df.index, df['Unidades'], label='Unidades Vendidas')
+plt.title('Série Temporal de Unidades Vendidas')
+plt.xlabel('Data')
+plt.ylabel('Unidades')
+plt.legend()
+plt.grid(True)
+plt.show()
+```
+
+##  {#preprocessamento data-menu-title="Pré Processamento dos dados"}
+
+[Pré Processamento dos dados]{.slide-title}
+
+[Criando defasagens (lags)]{.custom-subtitle2}
+
+<hr>
+
+Depois, criamos **features defasadas** para usar em modelos de séries temporais.  
+Cada valor da série recebe colunas com valores anteriores (`lag_1`, `lag_2`, ..., `lag_12`).
+
+```{python}
+#| label: lags
+#| echo: true
+#| output: true
+#| warning: false
+#| message: false
+
+# Função para criar lags
+def create_lagged_features(series, lags=12):
+    df_lags = pd.DataFrame({'y': series})
+    for lag in range(1, lags + 1):
+        df_lags[f'lag_{lag}'] = df_lags['y'].shift(lag)
+    return df_lags.dropna()
+
+lags = 12
+df_lagged = create_lagged_features(df['Unidades'], lags=lags)
+df_lagged.head()
+```
+
+##  {#preprocessamento data-menu-title="Pré Processamento dos dados"}
+
+[Pré Processamento dos dados]{.slide-title}
+
+[Separando features e target]{.custom-subtitle2}
+
+<hr>
+
+Agora separamos X (features) e y (target) e aplicamos escalonamento.
+
+```{python}
+#| label: features
+#| echo: true
+#| output: true
+#| warning: false
+#| message: false
+
+X = df_lagged.drop(columns='y').values
+y = df_lagged['y'].values
+
+# Escalonador (fit no dataset completo só para exemplo)
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+X_scaled[:5]
+```
+
+##  {#preprocessamento data-menu-title="Pré Processamento dos dados"}
+
+[Pré Processamento dos dados]{.slide-title}
+
+[Criando folds de validação temporal]{.custom-subtitle2}
+
+<hr>
+
+Aqui usamos TimeSeriesSplit do scikit-learn para criar folds de treino e validação, preservando a ordem temporal.
+
+```{python}
+#| label: folds
+#| echo: true
+#| output: true
+#| warning: false
+#| message: false
+
+# 3 folds com teste de tamanho 12
+tscv = TimeSeriesSplit(n_splits=3, test_size=12)
+
+splits = list(tscv.split(X_scaled))
 
 ```
+
+##  {#preprocessamento data-menu-title="Pré Processamento dos dados"}
+
+[Pré Processamento dos dados]{.slide-title}
+
+[Fold1]{.custom-subtitle2}
+
+<hr>
+
+
+```{python}
+#| label: fold1
+#| echo: false
+#| output: true
+#| warning: false
+#| message: false
+
+train_index, val_index = splits[0]
+X_train_fold, X_val_fold = X_scaled[train_index], X_scaled[val_index]
+y_train_fold, y_val_fold = y[train_index], y[val_index]
+
+plt.figure(figsize=(10, 4))
+plt.plot(val_index, y_val_fold, label='Validação')
+plt.plot(train_index, y_train_fold, label='Treino')
+plt.title('Fold 1')
+plt.xlabel('Índice temporal')
+plt.ylabel('Unidades')
+plt.legend()
+plt.grid(True)
+plt.show()
+```
+
+##  {#preprocessamento data-menu-title="Pré Processamento dos dados"}
+
+[Pré Processamento dos dados]{.slide-title}
+
+[Fold2]{.custom-subtitle2}
+
+<hr>
+
+
+```{python}
+#| label: fold2
+#| echo: false
+#| output: true
+#| warning: false
+#| message: false
+
+train_index, val_index = splits[1]
+X_train_fold, X_val_fold = X_scaled[train_index], X_scaled[val_index]
+y_train_fold, y_val_fold = y[train_index], y[val_index]
+
+plt.figure(figsize=(10, 4))
+plt.plot(val_index, y_val_fold, label='Validação')
+plt.plot(train_index, y_train_fold, label='Treino')
+plt.title('Fold 1')
+plt.xlabel('Índice temporal')
+plt.ylabel('Unidades')
+plt.legend()
+plt.grid(True)
+plt.show()
+```
+
+##  {#preprocessamento data-menu-title="Pré Processamento dos dados"}
+
+[Pré Processamento dos dados]{.slide-title}
+
+[Fold3]{.custom-subtitle2}
+
+<hr>
+
+
+```{python}
+#| label: fold3
+#| echo: false
+#| output: true
+#| warning: false
+#| message: false
+
+train_index, val_index = splits[2]
+X_train_fold, X_val_fold = X_scaled[train_index], X_scaled[val_index]
+y_train_fold, y_val_fold = y[train_index], y[val_index]
+
+plt.figure(figsize=(10, 4))
+plt.plot(val_index, y_val_fold, label='Validação')
+plt.plot(train_index, y_train_fold, label='Treino')
+plt.title('Fold 1')
+plt.xlabel('Índice temporal')
+plt.ylabel('Unidades')
+plt.legend()
+plt.grid(True)
+plt.show()
+```
+
+
+
+
+

@@ -264,3 +264,13 @@ hr {
 .panel-tabset {
   font-size: 25px;
 }
+
+/* Ajusta a fonte de todos os code chunks */
+.sourceCode {
+  font-size: 0.8rem;  /* Você pode usar px, em ou rem */
+}
+
+/* Alternativa mais específica se precisar do <pre> */
+pre.sourceCode {
+  font-size: 12px;
+}
