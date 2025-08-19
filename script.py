@@ -82,6 +82,8 @@ y_pred_mlp = model.predict(X_test)
 folds[2][1]
 
 # ---------- Gráfico - MLP ----------
+data_test = df.index[test_idx]
+
 plt.figure(figsize=(12, 6))
 plt.plot(data_test, y_test, label='Real', color='black')
 plt.plot(data_test, y_pred_mlp, label='MLP', color='blue')

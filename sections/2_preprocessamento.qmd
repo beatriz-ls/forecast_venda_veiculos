@@ -1,5 +1,5 @@
 
-##  {#preprocessamento data-menu-title="Pré Processamento dos dados"}
+##  {#preprocessamento data-menu-title="Pré Processamento dos dados: Bibliotecas utilizadas"}
 
 [Pré Processamento dos dados]{.slide-title}
 
@@ -28,7 +28,7 @@ from tensorflow.keras.optimizers import Adam
 ```
 
 
-##  {#preprocessamento data-menu-title="Pré Processamento dos dados"}
+##  {#tratamento1 data-menu-title="Pré Processamento dos dados: Tratamento dos dados"}
 
 [Pré Processamento dos dados]{.slide-title}
 
@@ -53,7 +53,7 @@ df.head()
 ```
 
 
-##  {#preprocessamento data-menu-title="Pré Processamento dos dados"}
+##  {#tratamento2 data-menu-title="Pré Processamento dos dados: Tratamento de dados"}
 
 [Pré Processamento dos dados]{.slide-title}
 
@@ -74,7 +74,7 @@ print(df.index.min(), df.index.max())
 print(df.index.to_series().diff().value_counts())
 ```
 
-##  {#preprocessamento data-menu-title="Pré Processamento dos dados"}
+##  {#tratamento3 data-menu-title="Pré Processamento dos dados: Tratamento de dados"}
 
 [Pré Processamento dos dados]{.slide-title}
 
@@ -99,7 +99,7 @@ plt.grid(True)
 plt.show()
 ```
 
-##  {#preprocessamento data-menu-title="Pré Processamento dos dados"}
+##  {#defasagens data-menu-title="Pré Processamento dos dados: Criando defasagens (lags)"}
 
 [Pré Processamento dos dados]{.slide-title}
 
@@ -107,8 +107,12 @@ plt.show()
 
 <hr>
 
+::: body-text-s
+
 Depois, criamos **features defasadas** para usar em modelos de séries temporais.  
 Cada valor da série recebe colunas com valores anteriores (`lag_1`, `lag_2`, ..., `lag_12`).
+
+:::
 
 ```{python}
 #| label: lags
@@ -129,7 +133,7 @@ df_lagged = create_lagged_features(df['Unidades'], lags=lags)
 df_lagged.head()
 ```
 
-##  {#preprocessamento data-menu-title="Pré Processamento dos dados"}
+##  {#features data-menu-title="Pré Processamento dos dados: Separando features e target"}
 
 [Pré Processamento dos dados]{.slide-title}
 
@@ -137,7 +141,11 @@ df_lagged.head()
 
 <hr>
 
+::: body-text-s
+
 Agora separamos X (features) e y (target) e aplicamos escalonamento.
+
+:::
 
 ```{python}
 #| label: features
@@ -155,7 +163,7 @@ X_scaled = scaler.fit_transform(X)
 X_scaled[:5]
 ```
 
-##  {#preprocessamento data-menu-title="Pré Processamento dos dados"}
+##  {#criando_folds data-menu-title="Pré Processamento dos dados: Criando folds de validação temporal"}
 
 [Pré Processamento dos dados]{.slide-title}
 
@@ -163,7 +171,11 @@ X_scaled[:5]
 
 <hr>
 
+::: body-text-s
+
 Aqui usamos TimeSeriesSplit do scikit-learn para criar folds de treino e validação, preservando a ordem temporal.
+
+:::
 
 ```{python}
 #| label: folds
@@ -179,7 +191,7 @@ splits = list(tscv.split(X_scaled))
 
 ```
 
-##  {#preprocessamento data-menu-title="Pré Processamento dos dados"}
+##  {#fold1 data-menu-title="Pré Processamento dos dados: Fold1"}
 
 [Pré Processamento dos dados]{.slide-title}
 
@@ -210,7 +222,7 @@ plt.grid(True)
 plt.show()
 ```
 
-##  {#preprocessamento data-menu-title="Pré Processamento dos dados"}
+##  {#fold2 data-menu-title="Pré Processamento dos dados: Fold2"}
 
 [Pré Processamento dos dados]{.slide-title}
 
@@ -241,7 +253,8 @@ plt.grid(True)
 plt.show()
 ```
 
-##  {#preprocessamento data-menu-title="Pré Processamento dos dados"}
+
+##  {#Fold3 data-menu-title="Pré Processamento dos dados: Fold3"}
 
 [Pré Processamento dos dados]{.slide-title}
 
@@ -273,6 +286,66 @@ plt.show()
 ```
 
 
+
+##  {#treino_teste data-menu-title="Pré Processamento dos dados: Separando Treino/Teste"}
+
+[Pré Processamento dos dados]{.slide-title}
+
+[Separando Treino/Teste]{.custom-subtitle2}
+
+<hr>
+
+::: body-text-s
+
+`tscv.split(X_scaled)` gera os índices de treino e teste para cada fold.
+
+Ao converter em lista, `folds[i]` vai conter uma tupla `(train_idx, test_idx)` para o fold i.
+
+:::
+
+```{python}
+#| label: train_test1
+#| echo: true
+#| output: true
+#| warning: false
+#| message: false
+folds = list(tscv.split(X_scaled))
+```
+
+::: body-text-s
+
+Juntando tudo de fold 0 e fold 1 em um único conjunto de treino
+
+:::
+
+```{python}
+#| label: train_test2
+#| echo: true
+#| output: true
+#| warning: false
+#| message: false
+train_idx = np.concatenate([folds[0][0], folds[1][0], folds[0][1], folds[1][1]])
+test_idx = folds[2][1]  # Apenas o conjunto de teste do fold 3
+
+```
+
+::: body-text-s
+
+Cria os conjuntos **X_train / X_test** e **y_train / y_test** a partir dos índices.
+
+:::
+```{python}
+#| label: train_test3
+#| echo: true
+#| output: true
+#| warning: false
+#| message: false
+#| 
+# Separar os dados
+X_train, X_test = X_scaled[train_idx], X_scaled[test_idx]
+y_train, y_test = y[train_idx], y[test_idx]
+
+```
 
 
 

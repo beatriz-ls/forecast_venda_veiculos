@@ -56,3 +56,7 @@ Slides disponíveis em [GitHub](https://github.com/beatriz-ls/causality_introduc
 {{< include sections/2_preprocessamento.qmd >}}
 
 ------------------------------------------------------------------------
+
+{{< include sections/3_modelo.qmd >}}
+
+------------------------------------------------------------------------

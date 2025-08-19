@@ -94,7 +94,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-19ffea94bc57d8eaa1f28f87a87440df.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-4e2275a27a62209912cbf0dc007e36d1.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -237,7 +237,7 @@
 <li><p><strong>Variável de interesse</strong>: número de automóveis vendidos pelas concessionárias.</p></li>
 </ul>
 </section>
-<section id="preprocessamento" class="slide level2" data-menu-title="Pré Processamento dos dados">
+<section id="preprocessamento" class="slide level2" data-menu-title="Pré Processamento dos dados: Bibliotecas utilizadas">
 <h2></h2>
 <p><span class="slide-title">Pré Processamento dos dados</span></p>
 <p><span class="custom-subtitle2">Bibliotecas utilizadas</span></p>
@@ -257,7 +257,7 @@
 <span id="cb1-12"><a href=""></a><span class="im">from</span> tensorflow.keras.optimizers <span class="im">import</span> Adam</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="preprocessamento" class="slide level2" data-menu-title="Pré Processamento dos dados">
+<section id="tratamento1" class="slide level2" data-menu-title="Pré Processamento dos dados: Tratamento dos dados">
 <h2></h2>
 <p><span class="slide-title">Pré Processamento dos dados</span></p>
 <p><span class="custom-subtitle2">Tratamento dos dados</span></p>
@@ -270,7 +270,7 @@
 <span id="cb2-5"><a href=""></a></span>
 <span id="cb2-6"><a href=""></a><span class="co"># Visualização</span></span>
 <span id="cb2-7"><a href=""></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="import_data" class="cell-output cell-output-display" data-execution_count="2">
+<div id="import_data" class="cell-output cell-output-display" data-execution_count="51">
 <div>
 <style scoped="">
     .dataframe tbody tr th:only-of-type {
@@ -325,7 +325,7 @@
 </div>
 </div>
 </section>
-<section id="preprocessamento" class="slide level2" data-menu-title="Pré Processamento dos dados">
+<section id="tratamento2" class="slide level2" data-menu-title="Pré Processamento dos dados: Tratamento de dados">
 <h2></h2>
 <p><span class="slide-title">Pré Processamento dos dados</span></p>
 <p><span class="custom-subtitle2">Tratamento dos dados</span></p>
@@ -347,7 +347,7 @@ Name: count, dtype: int64</code></pre>
 </div>
 </div>
 </section>
-<section id="preprocessamento" class="slide level2" data-menu-title="Pré Processamento dos dados">
+<section id="tratamento3" class="slide level2" data-menu-title="Pré Processamento dos dados: Tratamento de dados">
 <h2></h2>
 <p><span class="slide-title">Pré Processamento dos dados</span></p>
 <p><span class="custom-subtitle2">Tratamento dos dados</span></p>
@@ -364,13 +364,15 @@ Name: count, dtype: int64</code></pre>
 
 </div>
 <img data-src="index_files/figure-revealjs/serie-output-1.png" id="serie" class="r-stretch"></section>
-<section id="preprocessamento" class="slide level2" data-menu-title="Pré Processamento dos dados">
+<section id="defasagens" class="slide level2" data-menu-title="Pré Processamento dos dados: Criando defasagens (lags)">
 <h2></h2>
 <p><span class="slide-title">Pré Processamento dos dados</span></p>
 <p><span class="custom-subtitle2">Criando defasagens (lags)</span></p>
 <hr>
+<div class="body-text-s">
 <p>Depois, criamos <strong>features defasadas</strong> para usar em modelos de séries temporais.<br>
 Cada valor da série recebe colunas com valores anteriores (<code>lag_1</code>, <code>lag_2</code>, …, <code>lag_12</code>).</p>
+</div>
 <div id="cell-lags" class="cell" data-message="false" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href=""></a><span class="co"># Função para criar lags</span></span>
 <span id="cb6-2"><a href=""></a><span class="kw">def</span> create_lagged_features(series, lags<span class="op">=</span><span class="dv">12</span>):</span>
@@ -382,7 +384,7 @@ Cada valor da série recebe colunas com valores anteriores (<code>lag_1</code>, 
 <span id="cb6-8"><a href=""></a>lags <span class="op">=</span> <span class="dv">12</span></span>
 <span id="cb6-9"><a href=""></a>df_lagged <span class="op">=</span> create_lagged_features(df[<span class="st">'Unidades'</span>], lags<span class="op">=</span>lags)</span>
 <span id="cb6-10"><a href=""></a>df_lagged.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="lags" class="cell-output cell-output-display" data-execution_count="5">
+<div id="lags" class="cell-output cell-output-display" data-execution_count="54">
 <div>
 <style scoped="">
     .dataframe tbody tr th:only-of-type {
@@ -521,12 +523,14 @@ Cada valor da série recebe colunas com valores anteriores (<code>lag_1</code>, 
 </div>
 </div>
 </section>
-<section id="preprocessamento" class="slide level2" data-menu-title="Pré Processamento dos dados">
+<section id="features" class="slide level2" data-menu-title="Pré Processamento dos dados: Separando features e target">
 <h2></h2>
 <p><span class="slide-title">Pré Processamento dos dados</span></p>
 <p><span class="custom-subtitle2">Separando features e target</span></p>
 <hr>
+<div class="body-text-s">
 <p>Agora separamos X (features) e y (target) e aplicamos escalonamento.</p>
+</div>
 <div id="cell-features" class="cell" data-message="false" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href=""></a>X <span class="op">=</span> df_lagged.drop(columns<span class="op">=</span><span class="st">'y'</span>).values</span>
 <span id="cb7-2"><a href=""></a>y <span class="op">=</span> df_lagged[<span class="st">'y'</span>].values</span>
@@ -535,7 +539,7 @@ Cada valor da série recebe colunas com valores anteriores (<code>lag_1</code>, 
 <span id="cb7-5"><a href=""></a>scaler <span class="op">=</span> StandardScaler()</span>
 <span id="cb7-6"><a href=""></a>X_scaled <span class="op">=</span> scaler.fit_transform(X)</span>
 <span id="cb7-7"><a href=""></a>X_scaled[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="features" class="cell-output cell-output-display" data-execution_count="6">
+<div id="features" class="cell-output cell-output-display" data-execution_count="55">
 <pre><code>array([[ 1.20067726, -0.07857256,  1.69886005,  4.29006269,  2.25523529,
          2.38644951,  2.09740283,  1.60195134,  2.00616379,  1.37498133,
          1.87260544,  1.87981747],
@@ -554,12 +558,14 @@ Cada valor da série recebe colunas com valores anteriores (<code>lag_1</code>, 
 </div>
 </div>
 </section>
-<section id="preprocessamento" class="slide level2" data-menu-title="Pré Processamento dos dados">
+<section id="criando_folds" class="slide level2" data-menu-title="Pré Processamento dos dados: Criando folds de validação temporal">
 <h2></h2>
 <p><span class="slide-title">Pré Processamento dos dados</span></p>
 <p><span class="custom-subtitle2">Criando folds de validação temporal</span></p>
 <hr>
+<div class="body-text-s">
 <p>Aqui usamos TimeSeriesSplit do scikit-learn para criar folds de treino e validação, preservando a ordem temporal.</p>
+</div>
 <div id="folds" class="cell" data-message="false" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href=""></a><span class="co"># 3 folds com teste de tamanho 12</span></span>
 <span id="cb9-2"><a href=""></a>tscv <span class="op">=</span> TimeSeriesSplit(n_splits<span class="op">=</span><span class="dv">3</span>, test_size<span class="op">=</span><span class="dv">12</span>)</span>
@@ -567,27 +573,750 @@ Cada valor da série recebe colunas com valores anteriores (<code>lag_1</code>, 
 <span id="cb9-4"><a href=""></a>splits <span class="op">=</span> <span class="bu">list</span>(tscv.split(X_scaled))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="preprocessamento" class="slide level2" data-menu-title="Pré Processamento dos dados">
+<section id="fold1" class="slide level2" data-menu-title="Pré Processamento dos dados: Fold1">
 <h2></h2>
 <p><span class="slide-title">Pré Processamento dos dados</span></p>
 <p><span class="custom-subtitle2">Fold1</span></p>
 <hr>
 
 <img data-src="index_files/figure-revealjs/fold1-output-1.png" id="fold1" class="r-stretch"></section>
-<section id="preprocessamento" class="slide level2" data-menu-title="Pré Processamento dos dados">
+<section id="fold2" class="slide level2" data-menu-title="Pré Processamento dos dados: Fold2">
 <h2></h2>
 <p><span class="slide-title">Pré Processamento dos dados</span></p>
 <p><span class="custom-subtitle2">Fold2</span></p>
 <hr>
 
 <img data-src="index_files/figure-revealjs/fold2-output-1.png" id="fold2" class="r-stretch"></section>
-<section id="preprocessamento" class="slide level2" data-menu-title="Pré Processamento dos dados">
+<section id="Fold3" class="slide level2" data-menu-title="Pré Processamento dos dados: Fold3">
 <h2></h2>
 <p><span class="slide-title">Pré Processamento dos dados</span></p>
 <p><span class="custom-subtitle2">Fold3</span></p>
 <hr>
 
 <img data-src="index_files/figure-revealjs/fold3-output-1.png" id="fold3" class="r-stretch"></section>
+<section id="treino_teste" class="slide level2" data-menu-title="Pré Processamento dos dados: Separando Treino/Teste">
+<h2></h2>
+<p><span class="slide-title">Pré Processamento dos dados</span></p>
+<p><span class="custom-subtitle2">Separando Treino/Teste</span></p>
+<hr>
+<div class="body-text-s">
+<p><code>tscv.split(X_scaled)</code> gera os índices de treino e teste para cada fold.</p>
+<p>Ao converter em lista, <code>folds[i]</code> vai conter uma tupla <code>(train_idx, test_idx)</code> para o fold i.</p>
+</div>
+<div id="train_test1" class="cell" data-message="false" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href=""></a>folds <span class="op">=</span> <span class="bu">list</span>(tscv.split(X_scaled))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="body-text-s">
+<p>Juntando tudo de fold 0 e fold 1 em um único conjunto de treino</p>
+</div>
+<div id="train_test2" class="cell" data-message="false" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href=""></a>train_idx <span class="op">=</span> np.concatenate([folds[<span class="dv">0</span>][<span class="dv">0</span>], folds[<span class="dv">1</span>][<span class="dv">0</span>], folds[<span class="dv">0</span>][<span class="dv">1</span>], folds[<span class="dv">1</span>][<span class="dv">1</span>]])</span>
+<span id="cb11-2"><a href=""></a>test_idx <span class="op">=</span> folds[<span class="dv">2</span>][<span class="dv">1</span>]  <span class="co"># Apenas o conjunto de teste do fold 3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="body-text-s">
+<p>Cria os conjuntos <strong>X_train / X_test</strong> e <strong>y_train / y_test</strong> a partir dos índices.</p>
+</div>
+<div id="train_test3" class="cell" data-message="false" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href=""></a><span class="co"># Separar os dados</span></span>
+<span id="cb12-2"><a href=""></a>X_train, X_test <span class="op">=</span> X_scaled[train_idx], X_scaled[test_idx]</span>
+<span id="cb12-3"><a href=""></a>y_train, y_test <span class="op">=</span> y[train_idx], y[test_idx]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="mlp" class="slide level2" data-menu-title="Modelo MLP">
+<h2></h2>
+<p><span class="slide-title">Modelo</span></p>
+<p><span class="custom-subtitle2">Multilayer Perception</span></p>
+<hr>
+<div id="cell-mlp" class="cell" data-message="false" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href=""></a>model <span class="op">=</span> MLPRegressor(hidden_layer_sizes<span class="op">=</span>(<span class="dv">64</span>, <span class="dv">32</span>), activation<span class="op">=</span><span class="st">'relu'</span>,</span>
+<span id="cb13-2"><a href=""></a>                     solver<span class="op">=</span><span class="st">'adam'</span>, random_state<span class="op">=</span><span class="dv">42</span>, max_iter<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb13-3"><a href=""></a>model.fit(X_train, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="mlp" class="cell-output cell-output-display" data-execution_count="63">
+<style>#sk-container-id-4 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: #000;
+  --sklearn-color-text-muted: #666;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
+  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-icon: #696969;
+
+  @media (prefers-color-scheme: dark) {
+    /* Redefinition of color scheme for dark theme */
+    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
+    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-icon: #878787;
+  }
+}
+
+#sk-container-id-4 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-4 pre {
+  padding: 0;
+}
+
+#sk-container-id-4 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-4 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-4 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-4 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-4 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-4 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-4 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-4 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-4 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-4 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-4 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-4 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-4 label.sk-toggleable__label {
+  cursor: pointer;
+  display: flex;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+  align-items: start;
+  justify-content: space-between;
+  gap: 0.5em;
+}
+
+#sk-container-id-4 label.sk-toggleable__label .caption {
+  font-size: 0.6rem;
+  font-weight: lighter;
+  color: var(--sklearn-color-text-muted);
+}
+
+#sk-container-id-4 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-4 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-4 div.sk-toggleable__content {
+  display: none;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-4 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-4 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-4 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-4 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
+
+#sk-container-id-4 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-4 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-4 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-4 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-4 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-4 div.sk-label label.sk-toggleable__label,
+#sk-container-id-4 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-4 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-4 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-4 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1.2em;
+}
+
+#sk-container-id-4 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-4 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-4 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-4 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-4 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 0.5em;
+  text-align: center;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-1);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-4 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-4 a.estimator_doc_link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-4 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-4 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+
+.estimator-table summary {
+    padding: .5rem;
+    font-family: monospace;
+    cursor: pointer;
+}
+
+.estimator-table details[open] {
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
+    padding-bottom: 0.3rem;
+}
+
+.estimator-table .parameters-table {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.estimator-table .parameters-table tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+.estimator-table .parameters-table tr:nth-child(even) {
+    background-color: #f6f6f6;
+}
+
+.estimator-table .parameters-table tr:hover {
+    background-color: #e0e0e0;
+}
+
+.estimator-table table td {
+    border: 1px solid rgba(106, 105, 104, 0.232);
+}
+
+.user-set td {
+    color:rgb(255, 94, 0);
+    text-align: left;
+}
+
+.user-set td.value pre {
+    color:rgb(255, 94, 0) !important;
+    background-color: transparent !important;
+}
+
+.default td {
+    color: black;
+    text-align: left;
+}
+
+.user-set td i,
+.default td i {
+    color: black;
+}
+
+.copy-paste-icon {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NDggNTEyIj48IS0tIUZvbnQgQXdlc29tZSBGcmVlIDYuNy4yIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlL2ZyZWUgQ29weXJpZ2h0IDIwMjUgRm9udGljb25zLCBJbmMuLS0+PHBhdGggZD0iTTIwOCAwTDMzMi4xIDBjMTIuNyAwIDI0LjkgNS4xIDMzLjkgMTQuMWw2Ny45IDY3LjljOSA5IDE0LjEgMjEuMiAxNC4xIDMzLjlMNDQ4IDMzNmMwIDI2LjUtMjEuNSA0OC00OCA0OGwtMTkyIDBjLTI2LjUgMC00OC0yMS41LTQ4LTQ4bDAtMjg4YzAtMjYuNSAyMS41LTQ4IDQ4LTQ4ek00OCAxMjhsODAgMCAwIDY0LTY0IDAgMCAyNTYgMTkyIDAgMC0zMiA2NCAwIDAgNDhjMCAyNi41LTIxLjUgNDgtNDggNDhMNDggNTEyYy0yNi41IDAtNDgtMjEuNS00OC00OEwwIDE3NmMwLTI2LjUgMjEuNS00OCA0OC00OHoiLz48L3N2Zz4=);
+    background-repeat: no-repeat;
+    background-size: 14px 14px;
+    background-position: 0;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+}
+</style><div id="sk-container-id-4" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>MLPRegressor(hidden_layer_sizes=(64, 32), max_iter=1000, random_state=42)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" checked=""><label for="sk-estimator-id-4" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>MLPRegressor</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.neural_network.MLPRegressor.html">?<span>Documentation for MLPRegressor</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
+        <div class="estimator-table">
+            <details>
+                <summary>Parameters</summary>
+                
+<table class="parameters-table caption-top" data-quarto-postprocess="true">
+<tbody>
+<tr class="default odd">
+<td><em></em></td>
+<td class="param">loss&nbsp;</td>
+<td class="value">'squared_error'</td>
+</tr>
+<tr class="user-set even">
+<td><em></em></td>
+<td class="param">hidden_layer_sizes&nbsp;</td>
+<td class="value">(64, ...)</td>
+</tr>
+<tr class="default odd">
+<td><em></em></td>
+<td class="param">activation&nbsp;</td>
+<td class="value">'relu'</td>
+</tr>
+<tr class="default even">
+<td><em></em></td>
+<td class="param">solver&nbsp;</td>
+<td class="value">'adam'</td>
+</tr>
+<tr class="default odd">
+<td><em></em></td>
+<td class="param">alpha&nbsp;</td>
+<td class="value">0.0001</td>
+</tr>
+<tr class="default even">
+<td><em></em></td>
+<td class="param">batch_size&nbsp;</td>
+<td class="value">'auto'</td>
+</tr>
+<tr class="default odd">
+<td><em></em></td>
+<td class="param">learning_rate&nbsp;</td>
+<td class="value">'constant'</td>
+</tr>
+<tr class="default even">
+<td><em></em></td>
+<td class="param">learning_rate_init&nbsp;</td>
+<td class="value">0.001</td>
+</tr>
+<tr class="default odd">
+<td><em></em></td>
+<td class="param">power_t&nbsp;</td>
+<td class="value">0.5</td>
+</tr>
+<tr class="user-set even">
+<td><em></em></td>
+<td class="param">max_iter&nbsp;</td>
+<td class="value">1000</td>
+</tr>
+<tr class="default odd">
+<td><em></em></td>
+<td class="param">shuffle&nbsp;</td>
+<td class="value">True</td>
+</tr>
+<tr class="user-set even">
+<td><em></em></td>
+<td class="param">random_state&nbsp;</td>
+<td class="value">42</td>
+</tr>
+<tr class="default odd">
+<td><em></em></td>
+<td class="param">tol&nbsp;</td>
+<td class="value">0.0001</td>
+</tr>
+<tr class="default even">
+<td><em></em></td>
+<td class="param">verbose&nbsp;</td>
+<td class="value">False</td>
+</tr>
+<tr class="default odd">
+<td><em></em></td>
+<td class="param">warm_start&nbsp;</td>
+<td class="value">False</td>
+</tr>
+<tr class="default even">
+<td><em></em></td>
+<td class="param">momentum&nbsp;</td>
+<td class="value">0.9</td>
+</tr>
+<tr class="default odd">
+<td><em></em></td>
+<td class="param">nesterovs_momentum&nbsp;</td>
+<td class="value">True</td>
+</tr>
+<tr class="default even">
+<td><em></em></td>
+<td class="param">early_stopping&nbsp;</td>
+<td class="value">False</td>
+</tr>
+<tr class="default odd">
+<td><em></em></td>
+<td class="param">validation_fraction&nbsp;</td>
+<td class="value">0.1</td>
+</tr>
+<tr class="default even">
+<td><em></em></td>
+<td class="param">beta_1&nbsp;</td>
+<td class="value">0.9</td>
+</tr>
+<tr class="default odd">
+<td><em></em></td>
+<td class="param">beta_2&nbsp;</td>
+<td class="value">0.999</td>
+</tr>
+<tr class="default even">
+<td><em></em></td>
+<td class="param">epsilon&nbsp;</td>
+<td class="value">1e-08</td>
+</tr>
+<tr class="default odd">
+<td><em></em></td>
+<td class="param">n_iter_no_change&nbsp;</td>
+<td class="value">10</td>
+</tr>
+<tr class="default even">
+<td><em></em></td>
+<td class="param">max_fun&nbsp;</td>
+<td class="value">15000</td>
+</tr>
+</tbody>
+</table>
+
+            </details>
+        </div>
+    </div></div></div></div></div><script>function copyToClipboard(text, element) {
+    // Get the parameter prefix from the closest toggleable content
+    const toggleableContent = element.closest('.sk-toggleable__content');
+    const paramPrefix = toggleableContent ? toggleableContent.dataset.paramPrefix : '';
+    const fullParamName = paramPrefix ? `${paramPrefix}${text}` : text;
+
+    const originalStyle = element.style;
+    const computedStyle = window.getComputedStyle(element);
+    const originalWidth = computedStyle.width;
+    const originalHTML = element.innerHTML.replace('Copied!', '');
+
+    navigator.clipboard.writeText(fullParamName)
+        .then(() => {
+            element.style.width = originalWidth;
+            element.style.color = 'green';
+            element.innerHTML = "Copied!";
+
+            setTimeout(() => {
+                element.innerHTML = originalHTML;
+                element.style = originalStyle;
+            }, 2000);
+        })
+        .catch(err => {
+            console.error('Failed to copy:', err);
+            element.style.color = 'red';
+            element.innerHTML = "Failed!";
+            setTimeout(() => {
+                element.innerHTML = originalHTML;
+                element.style = originalStyle;
+            }, 2000);
+        });
+    return false;
+}
+
+document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
+    const toggleableContent = element.closest('.sk-toggleable__content');
+    const paramPrefix = toggleableContent ? toggleableContent.dataset.paramPrefix : '';
+    const paramName = element.parentElement.nextElementSibling.textContent.trim();
+    const fullParamName = paramPrefix ? `${paramPrefix}${paramName}` : paramName;
+
+    element.setAttribute('title', fullParamName);
+});
+</script>
+</div>
+</div>
+<div class="body-text-s">
+<p>Cria um perceptron multicamada (MLP) com:</p>
+<ul>
+<li>Duas camadas ocultas, a primeira com 64 neurônios e a segunda com 32.</li>
+<li>Função de ativação ReLU.</li>
+<li>Otimizador Adam.</li>
+<li>Até 1000 iterações.</li>
+</ul>
+</div>
+<div id="cell-pred" class="cell" data-message="false" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href=""></a>y_pred_mlp <span class="op">=</span> model.predict(X_test)</span>
+<span id="cb14-2"><a href=""></a></span>
+<span id="cb14-3"><a href=""></a>folds[<span class="dv">2</span>][<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="pred" class="cell-output cell-output-display" data-execution_count="64">
+<pre><code>array([ 95,  96,  97,  98,  99, 100, 101, 102, 103, 104, 105, 106])</code></pre>
+</div>
+</div>
+</section>
+<section id="mlp_pred" class="slide level2" data-menu-title="Modelo MLP: Gráfico">
+<h2></h2>
+<p><span class="slide-title">Modelo MLP</span></p>
+<p><span class="custom-subtitle2">Previsão</span></p>
+<hr>
+</section>
+<section id="mlp_pred_series" class="slide level2" data-menu-title="Modelo MLP: Gráfico de predição">
+<h2></h2>
+<p><span class="slide-title">Modelo MLP</span></p>
+<p><span class="custom-subtitle2">Previsão na série temporal</span></p>
+<hr>
+
+<img data-src="index_files/figure-revealjs/plot_pred1-output-1.png" id="plot_pred1" class="r-stretch"></section>
 <section class="slide level2">
 
 
