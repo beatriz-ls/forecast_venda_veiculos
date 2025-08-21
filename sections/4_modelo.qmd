@@ -1,0 +1,268 @@
+
+##  {#mlp data-menu-title="Modelo MLP"}
+
+[Modelo]{.slide-title}
+
+[Multilayer Perception]{.custom-subtitle2}
+
+<hr>
+
+```{python}
+#| label: mlp
+#| echo: true
+#| output: true
+#| warning: false
+#| message: false
+#| 
+
+# Treinar MLP
+model_mlp = MLPRegressor(hidden_layer_sizes=(64, 32), activation='relu',
+                         solver='adam', random_state=42,
+                         max_iter=1000)
+
+model_mlp.fit(X_train, y_train)
+
+# Prever no fold 3
+y_pred_mlp = model_mlp.predict(X_test)
+
+```
+
+::: body-text-s
+
+Cria um perceptron multicamada (MLP) com:
+
+- Duas camadas ocultas, a primeira com 64 neurônios e a segunda com 32.
+- Função de ativação ReLU.
+- Otimizador Adam.
+- Até 1000 iterações.
+
+:::
+
+```{python}
+#| label: pred
+#| echo: true
+#| output: true
+#| warning: false
+#| message: false
+#| 
+
+rmse_mlp = np.sqrt(mean_squared_error(y_test, y_pred_mlp))
+print(f"RMSE: {rmse_mlp:.4f}")
+```
+
+##  {#mlp_pred data-menu-title="Modelo MLP: Gráfico"}
+
+[Modelo Multilayer Perception]{.slide-title}
+
+[Previsão]{.custom-subtitle2}
+
+<hr>
+
+```{python}
+#| label: plot_pred
+#| echo: false
+#| output: true
+#| warning: false
+#| message: false
+
+data_test = df.index[test_idx]
+
+plt.figure(figsize=(12, 6))
+plt.plot(data_test, y_test, label='Real', color='black')
+plt.plot(data_test, y_pred_mlp, label='MLP', color='blue')
+plt.title(f'Previsão de Unidades (MLP) - Fold 3')
+plt.legend()
+plt.grid(True)
+plt.show()
+```
+
+##  {#mlp_pred_series data-menu-title="Modelo MLP: Gráfico de predição"}
+
+[Modelo Multilayer Perception]{.slide-title}
+
+[Previsão na série temporal]{.custom-subtitle2}
+
+<hr>
+
+```{python}
+#| label: plot_pred1
+#| echo: false
+#| output: true
+#| warning: false
+#| message: false
+
+plt.figure(figsize=(12, 6))
+
+# Série real completa (eixo x = índices inteiros da série)
+plt.plot(np.arange(len(y)), y, label='Real', color='black')
+
+# Previsão no fold 3 (test_idx são os índices absolutos na série)
+plt.plot(test_idx, y_pred_mlp, label='Previsão MLP (fold 3)', color='blue')
+
+plt.title('Previsão de Unidades (MLP) - Série Completa')
+plt.legend()
+plt.grid(True)
+plt.show()
+```
+
+
+##  {#rnn data-menu-title="Rede Neural Recorrente"}
+
+[Modelo Rede Neural Recorrente]{.slide-title}
+
+[Separação Treino/Teste]{.custom-subtitle2}
+
+<hr>
+
+```{python}
+#| label: rnn
+#| echo: true
+#| output: true
+#| warning: false
+#| message: false
+
+# Loop de validação cruzada
+for fold, (train_idx, test_idx) in enumerate(tscv.split(X_scaled)):
+    X_train, X_test = X_scaled[train_idx], X_scaled[test_idx]
+    y_train, y_test = y[train_idx], y[test_idx]
+
+    # Reformatar para 3D: (amostras, timesteps, features)
+    X_train = X_train.reshape((X_train.shape[0], X_train.shape[1], 1))
+    X_test = X_test.reshape((X_test.shape[0], X_test.shape[1], 1))
+
+    # RNN com Keras
+    model_rnn = Sequential([
+      LSTM(64, return_sequences=True, input_shape=(X_train.shape[1], X_train.shape[2])),
+      Dropout(0.2),
+      LSTM(32),
+      Dense(1)
+    ])
+    model_rnn.compile(optimizer=Adam(learning_rate=0.01), loss='mse')
+
+    model_rnn.fit(X_train, y_train, epochs=100, batch_size=8,
+              validation_split=0.1, verbose=0,
+              callbacks=[EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True)])
+
+    y_pred_rnn = model_rnn.predict(X_test)
+```
+
+
+##  {#rnn1 data-menu-title="Rede Neural Recorrente"}
+
+[Modelo Rede Neural Recorrente]{.slide-title}
+
+[Escalonamento]{.custom-subtitle2}
+
+<hr>
+
+```{python}
+#| label: rnn1
+#| echo: true
+#| output: true
+#| warning: false
+#| message: false
+
+# Exemplo para escalonamento
+scaler_X = StandardScaler()
+X_train_scaled = scaler_X.fit_transform(X_train.reshape(X_train.shape[0], -1))
+X_train_scaled = X_train_scaled.reshape(X_train.shape[0], X_train.shape[1], 1)
+
+X_test_scaled = scaler_X.transform(X_test.reshape(X_test.shape[0], -1))
+X_test_scaled = X_test_scaled.reshape(X_test.shape[0], X_test.shape[1], 1)
+
+scaler_y = StandardScaler()
+y_train_scaled = scaler_y.fit_transform(y_train.reshape(-1, 1)).flatten()
+```
+
+##  {#rnn2 data-menu-title="Rede Neural Recorrente"}
+
+[Modelo Rede Neural Recorrente]{.slide-title}
+
+[Modelo]{.custom-subtitle2}
+
+<hr>
+
+```{python}
+#| label: rnn2
+#| echo: true
+#| output: true
+#| warning: false
+#| message: false
+
+model = Sequential([
+    LSTM(64, return_sequences=True, input_shape=(X_train.shape[1], 1)),
+    Dropout(0.3),
+    LSTM(32),
+    Dense(1)
+])
+
+model.compile(optimizer=Adam(learning_rate=0.001), loss='mse')
+
+model.fit(X_train_scaled, y_train_scaled, epochs=200, batch_size=16,
+          validation_split=0.1, verbose=1,
+          callbacks=[EarlyStopping(monitor='val_loss', patience=30, restore_best_weights=True)])
+
+# Previsão
+y_pred_scaled = model.predict(X_test_scaled).flatten()
+y_pred_rnn = scaler_y.inverse_transform(y_pred_scaled.reshape(-1, 1)).flatten()
+
+
+rmse_rnn = np.sqrt(mean_squared_error(y_test, y_pred_rnn))
+print(f"RMSE: {rmse_rnn:.4f}")
+```
+
+##  {#rnn3 data-menu-title="Rede Neural Recorrente"}
+
+[Modelo Rede Neural Recorrente]{.slide-title}
+
+[Previsão]{.custom-subtitle2}
+
+<hr>
+
+```{python}
+#| label: rnn3
+#| echo: false
+#| output: true
+#| warning: false
+#| message: false
+
+plt.figure(figsize=(12, 6))
+plt.plot(data_test, y_test, label='Real')
+plt.plot(data_test, y_pred_rnn, label='RNN', color='black')
+plt.title(f'Previsão de Unidades (RNN) - Fold {fold + 1}')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+
+plt.figure(figsize=(12, 6))
+```
+
+##  {#rnn4 data-menu-title="Rede Neural Recorrente"}
+
+[Modelo Rede Neural Recorrente]{.slide-title}
+
+[Previsão na série]{.custom-subtitle2}
+
+<hr>
+
+```{python}
+#| label: rnn4
+#| echo: false
+#| output: true
+#| warning: false
+#| message: false
+
+
+# Série real completa (eixo x = índices inteiros da série)
+plt.plot(np.arange(len(y)), y, label='Real')
+
+# Previsão no fold 3 (test_idx são os índices absolutos na série)
+plt.plot(test_idx, y_pred_rnn, label='Previsão RNN (fold 3)', color='black')
+
+plt.title('Previsão de Unidades (RNN) - Série Completa')
+plt.legend()
+plt.grid(True)
+plt.show()
+```
+

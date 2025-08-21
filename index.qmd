@@ -57,6 +57,14 @@ Slides disponíveis em [GitHub](https://github.com/beatriz-ls/causality_introduc
 
 ------------------------------------------------------------------------
 
-{{< include sections/3_modelo.qmd >}}
+{{< include sections/3_descritivas.qmd >}}
+
+------------------------------------------------------------------------
+
+{{< include sections/4_modelo.qmd >}}
+
+------------------------------------------------------------------------
+
+{{< include sections/5_conclusao.qmd >}}
 
 ------------------------------------------------------------------------

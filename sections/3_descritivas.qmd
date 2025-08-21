@@ -1,0 +1,153 @@
+##  {#descritivas1 data-menu-title="Análise descritiva: Estatísticas básicas"}
+
+[Análise Descritiva]{.slide-title}
+
+[Estatísticas básicas]{.custom-subtitle2}
+
+<hr>
+
+```{python}
+#| label: desc1
+#| echo: false
+#| output: true
+#| warning: false
+#| message: false
+
+print("Informações gerais:")
+print(df.info())
+print("\nEstatísticas descritivas:")
+print(df['Unidades'].describe())
+
+print("\nValores ausentes:")
+print(df.isna().sum())
+```
+
+##  {#descritivas2 data-menu-title="Análise descritiva: Série Temporal"}
+
+[Análise Descritiva]{.slide-title}
+
+[Série Temporal]{.custom-subtitle2}
+
+<hr>
+
+```{python}
+#| label: desc2
+#| echo: false
+#| output: true
+#| warning: false
+#| message: false
+
+plt.figure(figsize=(12,6))
+plt.plot(df.index, df['Unidades'], marker='o', linestyle='-')
+plt.title("Série Temporal - Unidades Vendidas")
+plt.xlabel("Data")
+plt.ylabel("Unidades")
+plt.grid(True)
+plt.show()
+```
+
+##  {#descritivas3 data-menu-title="Análise descritiva: Histograma da distribuição"}
+
+[Análise Descritiva]{.slide-title}
+
+[Histograma da distribuição]{.custom-subtitle2}
+
+<hr>
+
+```{python}
+#| label: desc3
+#| echo: false
+#| output: true
+#| warning: false
+#| message: false
+
+plt.figure(figsize=(8,5))
+sns.histplot(df['Unidades'], bins=20, kde=True)
+plt.title("Distribuição das Unidades Vendidas")
+plt.xlabel("Unidades")
+plt.ylabel("Frequência")
+plt.grid(True)
+plt.show()
+```
+
+##  {#descritivas4 data-menu-title="Análise descritiva: Distribuição das Unidades Vendidas"}
+
+[Análise Descritiva]{.slide-title}
+
+[Boxplot por ano]{.custom-subtitle2}
+
+<hr>
+
+```{python}
+#| label: desc4
+#| echo: false
+#| output: true
+#| warning: false
+#| message: false
+
+df['Ano'] = df.index.year
+plt.figure(figsize=(10,5))
+sns.boxplot(x='Ano', y='Unidades', data=df)
+plt.title("Boxplot de Unidades Vendidas por Ano")
+plt.xlabel("Ano")
+plt.ylabel("Unidades")
+plt.grid(True)
+plt.show()
+
+```
+
+##  {#descritivas5 data-menu-title="Análise descritiva: Médias mensais"}
+
+[Análise Descritiva]{.slide-title}
+
+[Médias mensais]{.custom-subtitle2}
+
+<hr>
+
+```{python}
+#| label: desc5
+#| echo: false
+#| output: true
+#| warning: false
+#| message: false
+
+df['Mes'] = df.index.month
+media_mensal = df.groupby('Mes')['Unidades'].mean()
+
+plt.figure(figsize=(10,5))
+media_mensal.plot(kind='bar', color='skyblue')
+plt.title("Média de Unidades Vendidas por Mês")
+plt.xlabel("Mês")
+plt.ylabel("Unidades")
+plt.grid(True)
+plt.show()
+```
+
+##  {#descritivas6 data-menu-title="Análise descritiva: Correlação entre defasagens"}
+
+[Análise Descritiva]{.slide-title}
+
+[Correlação entre defasagens]{.custom-subtitle2}
+
+<hr>
+
+```{python}
+#| label: desc6
+#| echo: false
+#| output: true
+#| warning: false
+#| message: false
+
+# --- Correlação entre defasagens ---
+lags = 12
+fig, axes = plt.subplots(3, 4, figsize=(15,8))
+for i, ax in enumerate(axes.flat, 1):
+    if i <= lags:
+        ax.scatter(df['Unidades'].shift(i), df['Unidades'])
+        ax.set_title(f"Lag {i}")
+        ax.set_xlabel(f"Unidades (t-{i})")
+        ax.set_ylabel("Unidades (t)")
+plt.tight_layout()
+plt.show()
+```
+
