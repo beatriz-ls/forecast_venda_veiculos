@@ -271,7 +271,7 @@
 <span id="cb2-5"><a href=""></a></span>
 <span id="cb2-6"><a href=""></a><span class="co"># Visualização</span></span>
 <span id="cb2-7"><a href=""></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="import_data" class="cell-output cell-output-display" data-execution_count="58">
+<div id="import_data" class="cell-output cell-output-display" data-execution_count="86">
 <div>
 <style scoped="">
     .dataframe tbody tr th:only-of-type {
@@ -385,7 +385,7 @@ Cada valor da série recebe colunas com valores anteriores (<code>lag_1</code>, 
 <span id="cb6-8"><a href=""></a>lags <span class="op">=</span> <span class="dv">12</span></span>
 <span id="cb6-9"><a href=""></a>df_lagged <span class="op">=</span> create_lagged_features(df[<span class="st">'Unidades'</span>], lags<span class="op">=</span>lags)</span>
 <span id="cb6-10"><a href=""></a>df_lagged.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="lags" class="cell-output cell-output-display" data-execution_count="61">
+<div id="lags" class="cell-output cell-output-display" data-execution_count="89">
 <div>
 <style scoped="">
     .dataframe tbody tr th:only-of-type {
@@ -540,7 +540,7 @@ Cada valor da série recebe colunas com valores anteriores (<code>lag_1</code>, 
 <span id="cb7-5"><a href=""></a>scaler <span class="op">=</span> StandardScaler()</span>
 <span id="cb7-6"><a href=""></a>X_scaled <span class="op">=</span> scaler.fit_transform(X)</span>
 <span id="cb7-7"><a href=""></a>X_scaled[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="features" class="cell-output cell-output-display" data-execution_count="62">
+<div id="features" class="cell-output cell-output-display" data-execution_count="90">
 <pre><code>array([[ 1.20067726, -0.07857256,  1.69886005,  4.29006269,  2.25523529,
          2.38644951,  2.09740283,  1.60195134,  2.00616379,  1.37498133,
          1.87260544,  1.87981747],
@@ -771,19 +771,19 @@ dtype: int64</code></pre>
 <span id="cb17-23"><a href=""></a>    y_pred_rnn <span class="op">=</span> model_rnn.predict(X_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
-<pre><span class="ansi-bold">1/1</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 185ms/step
+<pre><span class="ansi-bold">1/1</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 197ms/step
 
-<span class="ansi-bold">1/1</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 197ms/step
+<span class="ansi-bold">1/1</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 209ms/step
 
 
-<span class="ansi-bold">1/1</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 199ms/step
+<span class="ansi-bold">1/1</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 181ms/step
 
-<span class="ansi-bold">1/1</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 216ms/step
+<span class="ansi-bold">1/1</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 193ms/step
 
 
-<span class="ansi-bold">1/1</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 172ms/step
+<span class="ansi-bold">1/1</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 184ms/step
 
-<span class="ansi-bold">1/1</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 187ms/step
+<span class="ansi-bold">1/1</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 196ms/step
 </pre>
 </div>
 </div>
@@ -838,366 +838,338 @@ dtype: int64</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
-<pre><span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">9s</span> 2s/step - loss: 1.3325
-
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 66ms/step - loss: 0.9649 - val_loss: 0.4792
+<pre><span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">10s</span> 2s/step - loss: 0.5730
+
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">2s</span> 63ms/step - loss: 0.9997 - val_loss: 0.4925
 
 Epoch 2/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 22ms/step - loss: 1.2333
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 19ms/step - loss: 0.9694
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 12ms/step - loss: 0.8923 - val_loss: 0.4932
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 13ms/step - loss: 0.8906 - val_loss: 0.5001
 
 Epoch 3/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 31ms/step - loss: 1.6624
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 16ms/step - loss: 0.5348
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 13ms/step - loss: 0.8608 - val_loss: 0.5065
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 16ms/step - loss: 0.8510 - val_loss: 0.5575
 
 Epoch 4/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 16ms/step - loss: 0.3230
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 24ms/step - loss: 0.3025
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 15ms/step - loss: 0.8316 - val_loss: 0.5455
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 13ms/step - loss: 0.8175 - val_loss: 0.5962
 
 Epoch 5/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 28ms/step - loss: 0.3342
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 22ms/step - loss: 1.1402
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 13ms/step - loss: 0.8142 - val_loss: 0.5757
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 11ms/step - loss: 0.7952 - val_loss: 0.5931
 
 Epoch 6/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 23ms/step - loss: 0.6097
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 31ms/step - loss: 0.5524
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 14ms/step - loss: 0.7858 - val_loss: 0.5655
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 12ms/step - loss: 0.7716 - val_loss: 0.5234
 
 Epoch 7/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 19ms/step - loss: 2.0619
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 16ms/step - loss: 0.5616
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 13ms/step - loss: 0.7755 - val_loss: 0.5722
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 16ms/step - loss: 0.7622 - val_loss: 0.5182
 
 Epoch 8/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 18ms/step - loss: 0.9437
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 25ms/step - loss: 1.1681
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 13ms/step - loss: 0.7438 - val_loss: 0.5232
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 14ms/step - loss: 0.7207 - val_loss: 0.5398
 
 Epoch 9/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 33ms/step - loss: 0.2630
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 22ms/step - loss: 0.2832
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 13ms/step - loss: 0.7128 - val_loss: 0.5048
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 14ms/step - loss: 0.7010 - val_loss: 0.5026
 
 Epoch 10/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 17ms/step - loss: 0.2436
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 23ms/step - loss: 0.7541
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 14ms/step - loss: 0.6855 - val_loss: 0.5147
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 14ms/step - loss: 0.6912 - val_loss: 0.5018
 
 Epoch 11/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 32ms/step - loss: 0.6045
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 22ms/step - loss: 0.7229
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 13ms/step - loss: 0.6846 - val_loss: 0.5091
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 14ms/step - loss: 0.6517 - val_loss: 0.4930
 
 Epoch 12/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 16ms/step - loss: 0.6607
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 23ms/step - loss: 0.6856
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 13ms/step - loss: 0.6709 - val_loss: 0.4690
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 14ms/step - loss: 0.6382 - val_loss: 0.4812
 
 Epoch 13/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 17ms/step - loss: 0.4033
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 24ms/step - loss: 0.4089
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 15ms/step - loss: 0.6379 - val_loss: 0.4838
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 14ms/step - loss: 0.6259 - val_loss: 0.4630
 
 Epoch 14/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 23ms/step - loss: 0.6584
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 23ms/step - loss: 0.2949
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 14ms/step - loss: 0.6430 - val_loss: 0.4709
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 13ms/step - loss: 0.6235 - val_loss: 0.4606
 
 Epoch 15/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 13ms/step - loss: 0.8614
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 18ms/step - loss: 0.4504
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 17ms/step - loss: 0.6259 - val_loss: 0.4763
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 13ms/step - loss: 0.6290 - val_loss: 0.4603
 
 Epoch 16/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 23ms/step - loss: 0.4275
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 16ms/step - loss: 0.5600
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 13ms/step - loss: 0.6412 - val_loss: 0.4745
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 14ms/step - loss: 0.5822 - val_loss: 0.4636
 
 Epoch 17/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 23ms/step - loss: 0.3118
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 31ms/step - loss: 0.4162
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 13ms/step - loss: 0.6151 - val_loss: 0.4804
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 13ms/step - loss: 0.6449 - val_loss: 0.4345
 
 Epoch 18/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 16ms/step - loss: 0.4049
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 31ms/step - loss: 0.4120
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 12ms/step - loss: 0.6040 - val_loss: 0.4737
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 14ms/step - loss: 0.5916 - val_loss: 0.4665
 
 Epoch 19/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 31ms/step - loss: 0.4439
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 22ms/step - loss: 0.5998
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 12ms/step - loss: 0.6069 - val_loss: 0.4702
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 13ms/step - loss: 0.5785 - val_loss: 0.4999
 
 Epoch 20/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 16ms/step - loss: 0.3893
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 16ms/step - loss: 0.5499
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 16ms/step - loss: 0.5845 - val_loss: 0.4771
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 12ms/step - loss: 0.5701 - val_loss: 0.4508
 
 Epoch 21/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 16ms/step - loss: 0.7077
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 16ms/step - loss: 0.5479
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 12ms/step - loss: 0.5888 - val_loss: 0.4534
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 15ms/step - loss: 0.5370 - val_loss: 0.4691
 
 Epoch 22/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 16ms/step - loss: 0.6108
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 23ms/step - loss: 1.0034
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 12ms/step - loss: 0.5582 - val_loss: 0.4773
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 14ms/step - loss: 0.5566 - val_loss: 0.4678
 
 Epoch 23/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 31ms/step - loss: 1.0306
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 22ms/step - loss: 0.2735
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 12ms/step - loss: 0.5392 - val_loss: 0.4784
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 13ms/step - loss: 0.5407 - val_loss: 0.4623
 
 Epoch 24/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 16ms/step - loss: 0.8719
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 16ms/step - loss: 1.2826
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 16ms/step - loss: 0.5532 - val_loss: 0.4910
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 16ms/step - loss: 0.5551 - val_loss: 0.5274
 
 Epoch 25/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 16ms/step - loss: 0.4002
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 23ms/step - loss: 0.4028
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 13ms/step - loss: 0.5244 - val_loss: 0.5086
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 14ms/step - loss: 0.5295 - val_loss: 0.4734
 
 Epoch 26/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 31ms/step - loss: 1.2173
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 23ms/step - loss: 0.4258
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 12ms/step - loss: 0.5736 - val_loss: 0.4800
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 13ms/step - loss: 0.5292 - val_loss: 0.4876
 
 Epoch 27/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 31ms/step - loss: 0.4429
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 24ms/step - loss: 0.3867
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 12ms/step - loss: 0.5502 - val_loss: 0.4844
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 14ms/step - loss: 0.5002 - val_loss: 0.5617
 
 Epoch 28/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 16ms/step - loss: 0.3552
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 22ms/step - loss: 0.5279
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 16ms/step - loss: 0.5244 - val_loss: 0.4700
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 13ms/step - loss: 0.4903 - val_loss: 0.5132
 
 Epoch 29/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 16ms/step - loss: 0.4155
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 19ms/step - loss: 0.4149
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 12ms/step - loss: 0.5272 - val_loss: 0.4716
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 12ms/step - loss: 0.5486 - val_loss: 0.5885
 
 Epoch 30/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 24ms/step - loss: 0.7760
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 16ms/step - loss: 1.0280
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 14ms/step - loss: 0.5176 - val_loss: 0.4599
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 16ms/step - loss: 0.4976 - val_loss: 0.5407
 
 Epoch 31/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 20ms/step - loss: 0.2876
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 22ms/step - loss: 0.3902
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 13ms/step - loss: 0.5128 - val_loss: 0.4642
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 14ms/step - loss: 0.5100 - val_loss: 0.5484
 
 Epoch 32/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 33ms/step - loss: 0.3782
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 23ms/step - loss: 0.2313
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 14ms/step - loss: 0.4984 - val_loss: 0.4850
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 13ms/step - loss: 0.4749 - val_loss: 0.5275
 
 Epoch 33/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 23ms/step - loss: 0.6305
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 22ms/step - loss: 0.3420
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 14ms/step - loss: 0.4910 - val_loss: 0.5023
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 13ms/step - loss: 0.4923 - val_loss: 0.6761
 
 Epoch 34/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 22ms/step - loss: 0.5031
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 23ms/step - loss: 0.4633
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 12ms/step - loss: 0.4866 - val_loss: 0.5064
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 14ms/step - loss: 0.4798 - val_loss: 0.4986
 
 Epoch 35/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 32ms/step - loss: 0.8325
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 22ms/step - loss: 0.5302
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 14ms/step - loss: 0.5440 - val_loss: 0.5065
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 14ms/step - loss: 0.4923 - val_loss: 0.7003
 
 Epoch 36/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 22ms/step - loss: 0.5108
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 22ms/step - loss: 0.2575
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 14ms/step - loss: 0.5165 - val_loss: 0.5179
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 14ms/step - loss: 0.4685 - val_loss: 0.6494
 
 Epoch 37/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 23ms/step - loss: 0.3563
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 22ms/step - loss: 0.4628
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 14ms/step - loss: 0.4670 - val_loss: 0.5050
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 13ms/step - loss: 0.5258 - val_loss: 0.6984
 
 Epoch 38/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 28ms/step - loss: 0.2844
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 16ms/step - loss: 0.3941
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 15ms/step - loss: 0.5019 - val_loss: 0.5765
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 16ms/step - loss: 0.4520 - val_loss: 0.6989
 
 Epoch 39/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 23ms/step - loss: 0.4131
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 23ms/step - loss: 0.2771
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 13ms/step - loss: 0.4499 - val_loss: 0.4985
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 13ms/step - loss: 0.4597 - val_loss: 0.6142
 
 Epoch 40/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 15ms/step - loss: 0.4056
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 22ms/step - loss: 0.3145
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 15ms/step - loss: 0.4887 - val_loss: 0.5057
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 12ms/step - loss: 0.4820 - val_loss: 0.6221
 
 Epoch 41/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 23ms/step - loss: 0.2548
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 16ms/step - loss: 0.7651
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 14ms/step - loss: 0.4361 - val_loss: 0.4851
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 14ms/step - loss: 0.4371 - val_loss: 0.6576
 
 Epoch 42/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 26ms/step - loss: 0.4638
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 31ms/step - loss: 0.3049
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 15ms/step - loss: 0.4330 - val_loss: 0.5803
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 12ms/step - loss: 0.4248 - val_loss: 0.4949
 
 Epoch 43/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 23ms/step - loss: 0.6501
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 31ms/step - loss: 0.2978
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 14ms/step - loss: 0.4095 - val_loss: 0.6279
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 13ms/step - loss: 0.4286 - val_loss: 0.6039
 
 Epoch 44/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 23ms/step - loss: 0.4348
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 16ms/step - loss: 0.6550
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 11ms/step - loss: 0.4279 - val_loss: 0.5788
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 12ms/step - loss: 0.4036 - val_loss: 0.5468
 
 Epoch 45/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 33ms/step - loss: 0.6205
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 16ms/step - loss: 0.2175
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 13ms/step - loss: 0.4645 - val_loss: 0.5409
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 12ms/step - loss: 0.4230 - val_loss: 0.6150
 
 Epoch 46/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 27ms/step - loss: 0.2966
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 31ms/step - loss: 0.4183
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 14ms/step - loss: 0.4077 - val_loss: 0.5355
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 13ms/step - loss: 0.3976 - val_loss: 0.7587
 
 Epoch 47/200
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 26ms/step - loss: 0.3045
+<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 16ms/step - loss: 0.6921
 
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 15ms/step - loss: 0.3920 - val_loss: 0.6397
-
-Epoch 48/200
+<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 16ms/step - loss: 0.4353 - val_loss: 0.5236
 
 
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 30ms/step - loss: 0.4163
-
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 11ms/step - loss: 0.3951 - val_loss: 0.5549
-
-Epoch 49/200
-
-
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 16ms/step - loss: 0.3817
-
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 16ms/step - loss: 0.4061 - val_loss: 0.6803
-
-Epoch 50/200
-
-
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 23ms/step - loss: 0.3628
-
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 14ms/step - loss: 0.3976 - val_loss: 0.5362
-
-Epoch 51/200
-
-
-<span class="ansi-bold">1/6</span> <span class="ansi-green-fg">━━━</span><span class="ansi-white-fg">━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 22ms/step - loss: 0.4334
-
-<span class="ansi-bold">6/6</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 14ms/step - loss: 0.4564 - val_loss: 0.9097
-
-
-<span class="ansi-bold">1/1</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 179ms/step
+<span class="ansi-bold">1/1</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 181ms/step
 
-<span class="ansi-bold">1/1</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 192ms/step
+<span class="ansi-bold">1/1</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 197ms/step
 
-RMSE: 23.8092
+RMSE: 23.9832
 </pre>
 </div>
 </div>
@@ -1226,7 +1198,24 @@ RMSE: 23.8092
 <h2></h2>
 <p><span class="slide-title">Conclusão</span></p>
 <hr>
-<p>bla bla bla</p>
+<div class="sanchez-font">
+<div class="salmon-text">
+<p>Natureza dos dados</p>
+</div>
+</div>
+<p>O pico absoluto de vendas ocorre em maio, com 1.258 unidades vendidas. Os meses de abril (1.150), julho (1.159) e agosto (1.155) também apresentam volumes altos, sugerindo forte sazonalidade no meio do ano. Já os meses mais fracos são dezembro (993) e fevereiro (1.018), indicando queda no final/início do ano — possivelmente relacionada a férias, recesso ou fechamento de orçamento.</p>
+<div class="sanchez-font">
+<div class="salmon-text">
+<p>Redes Neurais Recorrentes (RNN/LSTM)</p>
+</div>
+</div>
+<p>As redes LSTM demonstraram performance superior na previsão de vendas do dados apresentados, especialmente por sua capacidade de capturar padrões temporais complexos, sazonalidade acentuada (como os picos de dezembro) e eventos extraordinários como a queda drástica durante a pandemia em 2020. Sua arquitetura com memória de longo prazo foi decisiva para o menor erro de previsão.</p>
+<div class="sanchez-font">
+<div class="salmon-text">
+<p>MLP como Alternativa Rápida e Eficiente</p>
+</div>
+</div>
+<p>O modelo MLP é mais adequado para análises preliminares e cenários com restrições computacionais, oferecendo treinamento mais rápido e menor complexidade. Embora com performance inferior na captura de sazonalidade complexa, mantém utilidade para identificação de tendências gerais e prototipagem rápida.</p>
 </section>
 <section class="slide level2">
 
