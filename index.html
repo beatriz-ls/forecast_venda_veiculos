@@ -582,8 +582,8 @@ Cada valor da série recebe colunas com valores anteriores (<code>lag_1</code>, 
 <span id="cb6-7"><a href="#cb6-7"></a></span>
 <span id="cb6-8"><a href="#cb6-8"></a>lags <span class="op">=</span> <span class="dv">12</span></span>
 <span id="cb6-9"><a href="#cb6-9"></a>df_lagged <span class="op">=</span> create_lagged_features(df[<span class="st">'Unidades'</span>], lags<span class="op">=</span>lags)</span>
-<span id="cb6-10"><a href="#cb6-10"></a>df_lagged.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="lags" class="cell-output cell-output-display" data-execution_count="5">
+<span id="cb6-10"><a href="#cb6-10"></a>display(df_lagged.head(<span class="dv">4</span>).iloc[:, :<span class="dv">7</span>]) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="lags" class="cell-output cell-output-display">
 <div>
 <style scoped="">
     .dataframe tbody tr th:only-of-type {
@@ -610,21 +610,9 @@ Cada valor da série recebe colunas com valores anteriores (<code>lag_1</code>, 
 <th data-quarto-table-cell-role="th">lag_4</th>
 <th data-quarto-table-cell-role="th">lag_5</th>
 <th data-quarto-table-cell-role="th">lag_6</th>
-<th data-quarto-table-cell-role="th">lag_7</th>
-<th data-quarto-table-cell-role="th">lag_8</th>
-<th data-quarto-table-cell-role="th">lag_9</th>
-<th data-quarto-table-cell-role="th">lag_10</th>
-<th data-quarto-table-cell-role="th">lag_11</th>
-<th data-quarto-table-cell-role="th">lag_12</th>
 </tr>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">Data</th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
 <th data-quarto-table-cell-role="th"></th>
 <th data-quarto-table-cell-role="th"></th>
 <th data-quarto-table-cell-role="th"></th>
@@ -644,12 +632,6 @@ Cada valor da série recebe colunas com valores anteriores (<code>lag_1</code>, 
 <td>302.913</td>
 <td>234.777</td>
 <td>242.711</td>
-<td>234.533</td>
-<td>217.040</td>
-<td>234.608</td>
-<td>211.418</td>
-<td>232.623</td>
-<td>234.956</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">2015-05-01</td>
@@ -660,12 +642,6 @@ Cada valor da série recebe colunas com valores anteriores (<code>lag_1</code>, 
 <td>206.162</td>
 <td>302.913</td>
 <td>234.777</td>
-<td>242.711</td>
-<td>234.533</td>
-<td>217.040</td>
-<td>234.608</td>
-<td>211.418</td>
-<td>232.623</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2015-06-01</td>
@@ -676,12 +652,6 @@ Cada valor da série recebe colunas com valores anteriores (<code>lag_1</code>, 
 <td>149.828</td>
 <td>206.162</td>
 <td>302.913</td>
-<td>234.777</td>
-<td>242.711</td>
-<td>234.533</td>
-<td>217.040</td>
-<td>234.608</td>
-<td>211.418</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">2015-07-01</td>
@@ -692,28 +662,6 @@ Cada valor da série recebe colunas com valores anteriores (<code>lag_1</code>, 
 <td>189.859</td>
 <td>149.828</td>
 <td>206.162</td>
-<td>302.913</td>
-<td>234.777</td>
-<td>242.711</td>
-<td>234.533</td>
-<td>217.040</td>
-<td>234.608</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2015-08-01</td>
-<td>172.630</td>
-<td>186.995</td>
-<td>175.261</td>
-<td>175.618</td>
-<td>179.223</td>
-<td>189.859</td>
-<td>149.828</td>
-<td>206.162</td>
-<td>302.913</td>
-<td>234.777</td>
-<td>242.711</td>
-<td>234.533</td>
-<td>217.040</td>
 </tr>
 </tbody>
 </table>
@@ -737,7 +685,7 @@ Cada valor da série recebe colunas com valores anteriores (<code>lag_1</code>, 
 <span id="cb7-4"><a href="#cb7-4"></a><span class="co"># Escalonador (fit no dataset completo só para exemplo)</span></span>
 <span id="cb7-5"><a href="#cb7-5"></a>scaler <span class="op">=</span> StandardScaler()</span>
 <span id="cb7-6"><a href="#cb7-6"></a>X_scaled <span class="op">=</span> scaler.fit_transform(X)</span>
-<span id="cb7-7"><a href="#cb7-7"></a>X_scaled[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-7"><a href="#cb7-7"></a>X_scaled[:<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="features" class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>array([[ 1.20067726, -0.07857256,  1.69886005,  4.29006269,  2.25523529,
          2.38644951,  2.09740283,  1.60195134,  2.00616379,  1.37498133,
@@ -747,13 +695,7 @@ Cada valor da série recebe colunas com valores anteriores (<code>lag_1</code>, 
          1.3316081 ,  1.82126615],
        [ 0.74903639,  0.85863933,  1.18307238, -0.11409029,  1.45171896,
          4.03136914,  2.10393   ,  2.28127926,  2.00421577,  1.52011029,
-         1.9232482 ,  1.2890841 ],
-       [ 0.73771444,  0.74369976,  0.84657495,  1.03757478, -0.13015379,
-         1.38780881,  3.92661542,  2.07132298,  2.21662819,  1.97168286,
-         1.47504064,  1.87108371],
-       [ 1.109848  ,  0.73231739,  0.73252143,  0.73158418,  0.99392666,
-        -0.15142416,  1.33845883,  3.87439596,  2.01055334,  2.18279361,
-         1.92133475,  1.43017948]])</code></pre>
+         1.9232482 ,  1.2890841 ]])</code></pre>
 </div>
 </div>
 </section>
@@ -894,7 +836,7 @@ dtype: int64</code></pre>
 <section id="mlp" class="slide level2" data-menu-title="Modelo MLP">
 <h2></h2>
 <p><span class="slide-title">Modelo</span></p>
-<p><span class="custom-subtitle2">Multilayer Perception</span></p>
+<p><span class="custom-subtitle2">Multi-layer Perceptron</span></p>
 <hr>
 <div id="mlp" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># Treinar MLP</span></span>
@@ -926,14 +868,14 @@ dtype: int64</code></pre>
 </section>
 <section id="mlp_pred" class="slide level2" data-menu-title="Modelo MLP: Gráfico">
 <h2></h2>
-<p><span class="slide-title">Modelo Multilayer Perception</span></p>
+<p><span class="slide-title">Modelo Multi-layer Perceptron</span></p>
 <p><span class="custom-subtitle2">Previsão</span></p>
 <hr>
 
 <img data-src="index_files/figure-revealjs/plot_pred-output-1.png" id="plot_pred" class="r-stretch"></section>
 <section id="mlp_pred_series" class="slide level2" data-menu-title="Modelo MLP: Gráfico de predição">
 <h2></h2>
-<p><span class="slide-title">Modelo Multilayer Perception</span></p>
+<p><span class="slide-title">Modelo Multi-layer Perceptron</span></p>
 <p><span class="custom-subtitle2">Previsão na série temporal</span></p>
 <hr>
 
@@ -1017,7 +959,7 @@ dtype: int64</code></pre>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>rmse_rnn <span class="op">=</span> np.sqrt(mean_squared_error(y_test, y_pred_rnn))</span>
 <span id="cb20-2"><a href="#cb20-2"></a><span class="bu">print</span>(<span class="ss">f"RMSE: </span><span class="sc">{</span>rmse_rnn<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>RMSE: 24.5447</code></pre>
+<pre><code>RMSE: 23.5534</code></pre>
 </div>
 </div>
 </section>
@@ -1031,7 +973,7 @@ dtype: int64</code></pre>
 <section id="rnn4" class="slide level2" data-menu-title="Rede Neural Recorrente">
 <h2></h2>
 <p><span class="slide-title">Modelo Rede Neural Recorrente</span></p>
-<p><span class="custom-subtitle2">Previsão na série</span></p>
+<p><span class="custom-subtitle2">Previsão na série temporal</span></p>
 <hr>
 
 <img data-src="index_files/figure-revealjs/rnn4-output-1.png" id="rnn4" class="r-stretch"></section>

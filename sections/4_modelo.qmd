@@ -3,7 +3,7 @@
 
 [Modelo]{.slide-title}
 
-[Multilayer Perception]{.custom-subtitle2}
+[Multi-layer Perceptron]{.custom-subtitle2}
 
 <hr>
 
@@ -52,7 +52,7 @@ print(f"RMSE: {rmse_mlp:.4f}")
 
 ##  {#mlp_pred data-menu-title="Modelo MLP: Gráfico"}
 
-[Modelo Multilayer Perception]{.slide-title}
+[Modelo Multi-layer Perceptron]{.slide-title}
 
 [Previsão]{.custom-subtitle2}
 
@@ -78,7 +78,7 @@ plt.show()
 
 ##  {#mlp_pred_series data-menu-title="Modelo MLP: Gráfico de predição"}
 
-[Modelo Multilayer Perception]{.slide-title}
+[Modelo Multi-layer Perceptron]{.slide-title}
 
 [Previsão na série temporal]{.custom-subtitle2}
 
@@ -257,7 +257,7 @@ plt.close()
 
 [Modelo Rede Neural Recorrente]{.slide-title}
 
-[Previsão na série]{.custom-subtitle2}
+[Previsão na série temporal]{.custom-subtitle2}
 
 <hr>
 

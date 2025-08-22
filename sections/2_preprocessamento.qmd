@@ -131,7 +131,7 @@ def create_lagged_features(series, lags=12):
 
 lags = 12
 df_lagged = create_lagged_features(df['Unidades'], lags=lags)
-df_lagged.head()
+display(df_lagged.head(4).iloc[:, :7]) 
 ```
 
 ##  {#features data-menu-title="Pré Processamento dos dados: Separando features e target"}
@@ -161,7 +161,7 @@ y = df_lagged['y'].values
 # Escalonador (fit no dataset completo só para exemplo)
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
-X_scaled[:5]
+X_scaled[:3]
 ```
 
 ##  {#criando_folds data-menu-title="Pré Processamento dos dados: Criando folds de validação temporal"}
