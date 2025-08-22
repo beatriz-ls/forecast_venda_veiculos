@@ -10,7 +10,7 @@
 ```{python}
 #| label: mlp
 #| echo: true
-#| output: true
+#| output: false
 #| warning: false
 #| message: false
 #| 
@@ -117,7 +117,7 @@ plt.show()
 ```{python}
 #| label: rnn
 #| echo: true
-#| output: true
+#| output: false
 #| warning: false
 #| message: false
 
@@ -185,7 +185,7 @@ y_train_scaled = scaler_y.fit_transform(y_train.reshape(-1, 1)).flatten()
 ```{python}
 #| label: rnn2
 #| echo: true
-#| output: true
+#| output: false
 #| warning: false
 #| message: false
 
@@ -205,7 +205,21 @@ model.fit(X_train_scaled, y_train_scaled, epochs=200, batch_size=16,
 # Previsão
 y_pred_scaled = model.predict(X_test_scaled).flatten()
 y_pred_rnn = scaler_y.inverse_transform(y_pred_scaled.reshape(-1, 1)).flatten()
+```
 
+::: body-text-s
+
+RNN com duas camadas LSTM (64 e 32 neurônios), dropout de 30%, otimizador Adam. Treinada por 200 épocas com parada antecipada.
+
+:::
+
+```{python}
+#| label: pred2
+#| echo: true
+#| output: true
+#| warning: false
+#| message: false
+#| 
 
 rmse_rnn = np.sqrt(mean_squared_error(y_test, y_pred_rnn))
 print(f"RMSE: {rmse_rnn:.4f}")
@@ -233,9 +247,10 @@ plt.title(f'Previsão de Unidades (RNN) - Fold {fold + 1}')
 plt.legend()
 plt.grid(True)
 plt.show()
+plt.close()
 
 
-plt.figure(figsize=(12, 6))
+# plt.figure(figsize=(12, 6))
 ```
 
 ##  {#rnn4 data-menu-title="Rede Neural Recorrente"}
@@ -264,5 +279,6 @@ plt.title('Previsão de Unidades (RNN) - Série Completa')
 plt.legend()
 plt.grid(True)
 plt.show()
+plt.close()
 ```
 
