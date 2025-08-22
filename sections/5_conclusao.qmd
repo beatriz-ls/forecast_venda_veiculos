@@ -4,34 +4,25 @@
 
 <hr>
 
-::: {.sanchez-font}
-::: {.salmon-text}
-
-Natureza dos dados
-
-:::
-:::
-
-O pico absoluto de vendas ocorre em maio, com 1.258 unidades vendidas. Os meses de abril (1.150), julho (1.159) e agosto (1.155) também apresentam volumes altos, sugerindo forte sazonalidade no meio do ano.
-Já os meses mais fracos são dezembro (993) e fevereiro (1.018), indicando queda no final/início do ano — possivelmente relacionada a férias, recesso ou fechamento de orçamento.
+A análise dos resultados (RMSE e avaliação gráfica) revela que ambos os modelos performaram de forma muito semelhante em termos de erro médio.
 
 ::: {.sanchez-font}
 ::: {.salmon-text}
 
-Redes Neurais Recorrentes (RNN/LSTM)
+Rede Neural Recorrente (RNN/LSTM)
 
 :::
 :::
 
-As redes LSTM demonstraram performance superior na previsão de vendas do dados apresentados, especialmente por sua capacidade de capturar padrões temporais complexos, sazonalidade acentuada (como os picos de dezembro) e eventos extraordinários como a queda drástica durante a pandemia em 2020. Sua arquitetura com memória de longo prazo foi decisiva para o menor erro de previsão.
+Como esperado, sua arquitetura com memória mostrou-se robusta para aprender a tendência geral e a sazonalidade base. No entanto, neste caso específico, não capturou as oscilações de curto prazo com a mesma precisão que o MLP.
 
 ::: {.sanchez-font}
 ::: {.salmon-text}
 
-MLP como Alternativa Rápida e Eficiente
+Perceptron Multicamadas (MLP)
 
 :::
 :::
 
-O modelo MLP é mais adequado para análises preliminares e cenários com restrições computacionais, oferecendo treinamento mais rápido e menor complexidade. Embora com performance inferior na captura de sazonalidade complexa, mantém utilidade para identificação de tendências gerais e prototipagem rápida.
+Mostrou-se uma alternativa surpreendentemente eficaz, capturando melhor a dinâmica de picos e vales da série temporal. Sua velocidade de treinamento e menor complexidade o tornam a escolha ideal para uma prototipagem rápida e para cenários com restrições computacionais.
 

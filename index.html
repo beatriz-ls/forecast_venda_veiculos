@@ -836,7 +836,7 @@ dtype: int64</code></pre>
 <section id="mlp" class="slide level2" data-menu-title="Modelo MLP">
 <h2></h2>
 <p><span class="slide-title">Modelo</span></p>
-<p><span class="custom-subtitle2">Multi-layer Perceptron</span></p>
+<p><span class="custom-subtitle2">Multilayer Perceptron</span></p>
 <hr>
 <div id="mlp" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># Treinar MLP</span></span>
@@ -850,7 +850,7 @@ dtype: int64</code></pre>
 <span id="cb14-9"><a href="#cb14-9"></a>y_pred_mlp <span class="op">=</span> model_mlp.predict(X_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="body-text-s">
-<p>Cria um perceptron multicamada (MLP) com:</p>
+<p>Cria um perceptron multicamadas (MLP) com:</p>
 <ul>
 <li>Duas camadas ocultas, a primeira com 64 neurônios e a segunda com 32.</li>
 <li>Função de ativação ReLU.</li>
@@ -868,14 +868,14 @@ dtype: int64</code></pre>
 </section>
 <section id="mlp_pred" class="slide level2" data-menu-title="Modelo MLP: Gráfico">
 <h2></h2>
-<p><span class="slide-title">Modelo Multi-layer Perceptron</span></p>
+<p><span class="slide-title">Modelo Multilayer Perceptron</span></p>
 <p><span class="custom-subtitle2">Previsão</span></p>
 <hr>
 
 <img data-src="index_files/figure-revealjs/plot_pred-output-1.png" id="plot_pred" class="r-stretch"></section>
 <section id="mlp_pred_series" class="slide level2" data-menu-title="Modelo MLP: Gráfico de predição">
 <h2></h2>
-<p><span class="slide-title">Modelo Multi-layer Perceptron</span></p>
+<p><span class="slide-title">Modelo Multilayer Perceptron</span></p>
 <p><span class="custom-subtitle2">Previsão na série temporal</span></p>
 <hr>
 
@@ -959,7 +959,7 @@ dtype: int64</code></pre>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>rmse_rnn <span class="op">=</span> np.sqrt(mean_squared_error(y_test, y_pred_rnn))</span>
 <span id="cb20-2"><a href="#cb20-2"></a><span class="bu">print</span>(<span class="ss">f"RMSE: </span><span class="sc">{</span>rmse_rnn<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>RMSE: 23.5534</code></pre>
+<pre><code>RMSE: 23.3113</code></pre>
 </div>
 </div>
 </section>
@@ -981,24 +981,19 @@ dtype: int64</code></pre>
 <h2></h2>
 <p><span class="slide-title">Conclusão</span></p>
 <hr>
+<p>A análise dos resultados (RMSE e avaliação gráfica) revela que ambos os modelos performaram de forma muito semelhante em termos de erro médio.</p>
 <div class="sanchez-font">
 <div class="salmon-text">
-<p>Natureza dos dados</p>
+<p>Rede Neural Recorrente (RNN/LSTM)</p>
 </div>
 </div>
-<p>O pico absoluto de vendas ocorre em maio, com 1.258 unidades vendidas. Os meses de abril (1.150), julho (1.159) e agosto (1.155) também apresentam volumes altos, sugerindo forte sazonalidade no meio do ano. Já os meses mais fracos são dezembro (993) e fevereiro (1.018), indicando queda no final/início do ano — possivelmente relacionada a férias, recesso ou fechamento de orçamento.</p>
+<p>Como esperado, sua arquitetura com memória mostrou-se robusta para aprender a tendência geral e a sazonalidade base. No entanto, neste caso específico, não capturou as oscilações de curto prazo com a mesma precisão que o MLP.</p>
 <div class="sanchez-font">
 <div class="salmon-text">
-<p>Redes Neurais Recorrentes (RNN/LSTM)</p>
+<p>Perceptron Multicamadas (MLP)</p>
 </div>
 </div>
-<p>As redes LSTM demonstraram performance superior na previsão de vendas do dados apresentados, especialmente por sua capacidade de capturar padrões temporais complexos, sazonalidade acentuada (como os picos de dezembro) e eventos extraordinários como a queda drástica durante a pandemia em 2020. Sua arquitetura com memória de longo prazo foi decisiva para o menor erro de previsão.</p>
-<div class="sanchez-font">
-<div class="salmon-text">
-<p>MLP como Alternativa Rápida e Eficiente</p>
-</div>
-</div>
-<p>O modelo MLP é mais adequado para análises preliminares e cenários com restrições computacionais, oferecendo treinamento mais rápido e menor complexidade. Embora com performance inferior na captura de sazonalidade complexa, mantém utilidade para identificação de tendências gerais e prototipagem rápida.</p>
+<p>Mostrou-se uma alternativa surpreendentemente eficaz, capturando melhor a dinâmica de picos e vales da série temporal. Sua velocidade de treinamento e menor complexidade o tornam a escolha ideal para uma prototipagem rápida e para cenários com restrições computacionais.</p>
 </section>
 <section class="slide level2">
 

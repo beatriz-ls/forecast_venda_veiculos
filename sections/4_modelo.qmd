@@ -3,7 +3,7 @@
 
 [Modelo]{.slide-title}
 
-[Multi-layer Perceptron]{.custom-subtitle2}
+[Multilayer Perceptron]{.custom-subtitle2}
 
 <hr>
 
@@ -29,7 +29,7 @@ y_pred_mlp = model_mlp.predict(X_test)
 
 ::: body-text-s
 
-Cria um perceptron multicamada (MLP) com:
+Cria um perceptron multicamadas (MLP) com:
 
 - Duas camadas ocultas, a primeira com 64 neurônios e a segunda com 32.
 - Função de ativação ReLU.
@@ -52,7 +52,7 @@ print(f"RMSE: {rmse_mlp:.4f}")
 
 ##  {#mlp_pred data-menu-title="Modelo MLP: Gráfico"}
 
-[Modelo Multi-layer Perceptron]{.slide-title}
+[Modelo Multilayer Perceptron]{.slide-title}
 
 [Previsão]{.custom-subtitle2}
 
@@ -78,7 +78,7 @@ plt.show()
 
 ##  {#mlp_pred_series data-menu-title="Modelo MLP: Gráfico de predição"}
 
-[Modelo Multi-layer Perceptron]{.slide-title}
+[Modelo Multilayer Perceptron]{.slide-title}
 
 [Previsão na série temporal]{.custom-subtitle2}
 
